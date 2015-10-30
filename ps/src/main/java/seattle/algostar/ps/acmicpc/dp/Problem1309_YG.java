@@ -9,9 +9,9 @@ package com.naver.shopping.codingPractice.dp;
 
 import java.util.Scanner;
 
-public class Problem1309 {
+public class Problem1309_YG {
 	public static void main(String[] args){
-		new Problem1309().run();
+		new Problem1309_YG().run();
 	}
 	int n;
 	public void run(){

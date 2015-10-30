@@ -2,12 +2,12 @@ package com.naver.shopping.codingPractice.dp;
 
 import java.util.Scanner;
 
-public class Problem1947 {
+public class Problem1947_YG {
 	int k;
 	long[] cache;
 	
 	public static void main(String[] args){
-		new Problem1947().run();
+		new Problem1947_YG().run();
 	}
 	
 	public void run(){
