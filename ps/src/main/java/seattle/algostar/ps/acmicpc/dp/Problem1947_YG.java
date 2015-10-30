@@ -1,4 +1,4 @@
-package com.naver.shopping.codingPractice.dp;
+package seattle.algostar.ps.acmicpc.dp;
 
 import java.util.Scanner;
 
@@ -21,4 +21,4 @@ public class Problem1947_YG {
 		}
 		System.out.println(cache[k % 2]);
 	}
-}
+}	
