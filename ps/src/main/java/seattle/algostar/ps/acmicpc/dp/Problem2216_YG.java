@@ -5,7 +5,7 @@
  * NHN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-package com.naver.shopping.codingPractice.dp;
+package seattle.algostar.ps.acmicpc.dp;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -54,6 +54,7 @@ public class Problem2216_YG {
 			}
 		}
 		
+		System.out.println(Arrays.deepToString(cache));
 		System.out.println(cache[input1L][input2L]);
 	}
 }

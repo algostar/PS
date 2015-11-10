@@ -5,7 +5,7 @@
  * NHN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-package com.naver.shopping.codingPractice.dp;
+package seattle.algostar.ps.acmicpc.dp;
 
 import java.util.Arrays;
 import java.util.Scanner;
