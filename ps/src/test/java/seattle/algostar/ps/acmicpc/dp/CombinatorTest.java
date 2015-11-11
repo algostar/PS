@@ -24,7 +24,4 @@ public class CombinatorTest {
 		for (ICombinatoricsVector<String> perm : gen)
 			System.out.println(perm);
 	}
-
-	private void f(int step, String path) {
-	}
 }
