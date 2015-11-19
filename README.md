@@ -5,3 +5,4 @@
 - HLD : http://theyearlyprophet.com/heavy-light-decomposition.html
 - fast input for java : https://www.cpe.ku.ac.th/~jim/java-io.html
 - java eclipse stack size up : http://stackoverflow.com/questions/2127217/java-stack-overflow-error-how-to-increase-the-stack-size-in-eclipse
+- network flow : https://www.cs.princeton.edu/courses/archive/spring13/cos423/lectures/07NetworkFlowII-2x2.pdf
