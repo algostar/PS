@@ -5,7 +5,7 @@
  * NHN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-package seattle.algostar.ps.acmicpc.dp;
+package seattle.algostar.ps.acmicpc.slidingwindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
