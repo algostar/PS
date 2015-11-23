@@ -5,13 +5,13 @@
  * NHN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 
-package com.naver.shopping.codingPractice.dp;
+package seattle.algostar.ps.acmicpc.dp;
 
 import java.util.Scanner;
 
 public class Problem1904_YG {
 	public static void main(String[] args){
-		new Problem1904_YGProblem1904_YGProblem1904_YG().run();
+		new Problem1904_YG().run();
 	}
 	
 	int n;

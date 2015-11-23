@@ -1,8 +1,10 @@
+package seattle.algostar.ps.acmicpc.dp;
+
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-import com.naver.shopping.codingPractice.dp.Problem2302;
+
 
 /*
  * @(#)Problem2302.java $version 2015. 11. 19.

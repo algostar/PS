@@ -1,6 +1,8 @@
+package seattle.algostar.ps.acmicpc.dp;
+
 import java.util.Scanner;
 
-import com.naver.shopping.codingPractice.dp.Problem1562;
+
 
 /*
  * @(#)Problem1562_YG.java $version 2015. 11. 19.
