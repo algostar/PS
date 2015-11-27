@@ -25,13 +25,16 @@ public class Problem9252_JW {
 
 		System.out.println(f(s1.length - 1, s2.length - 1));
 		
-		print(s1.length-1, s2.length-2);
+		print(s1.length-1, s2.length-1);
 	}
 
 	private void print(int i, int j) {
-		if (i < 0 || j < 0) return;
+		if (i <= 0 || j <= 0) return;
 		
-		System.out.print(s1[i] + "/" + s2[j] + " ");
+		if(s1[i] == s2[j]){
+			System.out.println(s1[i] + " ");
+		}
+		//System.out.print(s1[i] + "/" + s2[j] + " ");
 		
 		print(pathI[i], pathJ[j]);
 	}
@@ -48,7 +51,16 @@ public class Problem9252_JW {
 			pathI[i] = i-1;
 			pathJ[j] = j-1;
 		} else {
-			lcs += Math.max(f(i - 1, j), f(i, j - 1));
+			int a = f(i - 1, j);
+			int b = f(i, j - 1);
+			lcs += Math.max(a, b);
+			if(a > b){
+				pathI[i] = i-1;
+				pathJ[j] = j;
+			}else{
+				pathI[i] = i;
+				pathJ[j] = j-1;
+			}
 		}
 
 		return memo[i][j] = lcs;
