@@ -10,6 +10,7 @@ public class Problem9251_JW {
 
 	char[] s1, s2;
 	int[][] memo;
+	
 
 	private void run() {
 		Scanner sc = new Scanner(System.in);
