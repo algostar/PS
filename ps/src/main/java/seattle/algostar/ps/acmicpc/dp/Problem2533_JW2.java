@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -18,7 +19,7 @@ public class Problem2533_JW2 {
 	
 	int eaN = 0;
 	int eaY = 1;
-	int[][] DP;
+	int[][] memo;
 	private void run() throws IOException {
 		Reader.init(System.in);
 		
@@ -38,16 +39,22 @@ public class Problem2533_JW2 {
 			cSum += v; 
 		}
 		
+		memo = new int[n+1][2];
+		for (int[] me : memo) Arrays.fill(me, -1);
+		
 		int root = (n*(n+1)/2) - cSum;
 		int min = Math.min( f(root, eaY) + 1, f(root, eaN) );
 		System.out.println(min);
+		
+		System.out.println(Arrays.deepToString(memo));
 	}
-	
 	
 	private int f(int node, int eaYN) {
 		if (tree.get(node).size() == 0) {
 			return 0;
 		}
+		
+		if (memo[node][eaYN] != -1) return memo[node][eaYN];
 		
 		int min = Integer.MAX_VALUE;
 		if (eaYN == eaY) {
@@ -66,7 +73,7 @@ public class Problem2533_JW2 {
 			}
 			min = eaYcnt;
 		}
-		return min;
+		return memo[node][eaYN] = min;
 	}
 
 
