@@ -45,8 +45,6 @@ public class Problem2533_JW2 {
 		int root = (n*(n+1)/2) - cSum;
 		int min = Math.min( f(root, eaY) + 1, f(root, eaN) );
 		System.out.println(min);
-		
-		System.out.println(Arrays.deepToString(memo));
 	}
 	
 	private int f(int node, int eaYN) {
