@@ -1,13 +1,7 @@
 package seattle.algostar.ps.acmicpc.dp;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.StringTokenizer;
+import java.io.*;
+import java.util.*;
 
 public class Problem2533_JW2 {
 	public static void main(String[] args) throws IOException {
@@ -16,64 +10,73 @@ public class Problem2533_JW2 {
 
 	int n;
 	List<List<Integer>> tree;
+	List<List<Integer>> dagTree;
 	
 	int eaN = 0;
 	int eaY = 1;
 	int[][] memo;
+	boolean[] visited;
+	
 	private void run() throws IOException {
 		Reader.init(System.in);
 		
 		int n = Reader.nextInt();
 		
 		tree = new ArrayList<List<Integer>>();
+		dagTree = new ArrayList<List<Integer>>();
+		visited = new boolean[n+1];
 		
 		for (int i = 0; i <= n; i++) {
 			tree.add(new ArrayList<Integer>());
+			dagTree.add(new ArrayList<Integer>());
 		}
 		
-		int cSum = 0;
 		for (int i = 0; i < n-1; i++) {
 			int u = Reader.nextInt();
 			int v = Reader.nextInt();
 			tree.get(u).add(v);
-			cSum += v; 
+			tree.get(v).add(u);
 		}
+		
+		int rootNode = 1;
+		makeDagTree(rootNode);
 		
 		memo = new int[n+1][2];
 		for (int[] me : memo) Arrays.fill(me, -1);
 		
-		int root = (n*(n+1)/2) - cSum;
-		int min = Math.min( f(root, eaY) + 1, f(root, eaN) );
+		int min = Math.min(f(rootNode, eaY), f(rootNode, eaN));
 		System.out.println(min);
 	}
 	
-	private int f(int node, int eaYN) {
-		if (tree.get(node).size() == 0) {
-			return 0;
-		}
+	private void makeDagTree(int node) {
+		visited[node] = true;
 		
+		for (int child : tree.get(node)) {
+			if (!visited[child]) {
+				dagTree.get(node).add(child);
+				makeDagTree(child);
+			}
+		}
+	}
+
+	private int f(int node, int eaYN) {
 		if (memo[node][eaYN] != -1) return memo[node][eaYN];
 		
-		int min = Integer.MAX_VALUE;
+		if (dagTree.get(node).size() == 0) return eaYN;
+		
+		int min = 0;
 		if (eaYN == eaY) {
-			int eaYcnt = 0;
-			int eaNcnt = 0;
-			
-			for (int cNode : tree.get(node)) {
-				eaYcnt += f(cNode, eaY) + 1;
-				eaNcnt += f(cNode, eaN);
+			for (int cNode : dagTree.get(node)) {
+				min += Math.min(f(cNode, eaY), f(cNode, eaN));
 			}
-			min = Math.min(eaYcnt, eaNcnt);
+			min += 1;
 		} else {
-			int eaYcnt = 0;
-			for (int cNode : tree.get(node)) {
-				eaYcnt += f(cNode, eaY) + 1;
+			for (int cNode : dagTree.get(node)) {
+				min += f(cNode, eaY);
 			}
-			min = eaYcnt;
 		}
 		return memo[node][eaYN] = min;
 	}
-
 
 	static class Reader {  
 	    static BufferedReader reader;
