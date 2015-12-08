@@ -10,9 +10,9 @@ package seattle.algostar.ps.acmicpc.backjoon.weeks1;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Problem1850 {
+public class Problem1850_YG {
 	public static void main(String[] args) throws IOException{
-		new Problem1850().run();
+		new Problem1850_YG().run();
 	}
 	
 	public void run() throws IOException{
