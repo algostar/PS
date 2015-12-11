@@ -33,33 +33,40 @@ public class Problem1102 {
 		char[] des = sc.next().toCharArray();
 		p = sc.nextInt();
 		
-		dp = new int[1<<17][p+1];
+		dp = new int[1<<17][17];
 		for(int i =0; i < 1<<17; i++){
 			Arrays.fill(dp[i], 987654321);
 		}
 		int start =0; int startp =0;
-		for(int i = des.length-1; i >= 0; i--){
+		for(int i = 0; i < des.length; i++){
 			if(des[i] == 'Y'){
-				start += Math.pow(10, i);
+				start += Math.pow(2, i);
 				startp++;
 			}
 		}
+		if(startp > p){
+			System.out.println(0);
+			return;
+		}
 		dp[start][startp] = 0;
 		
-		for(int i = 0; i < 1<<n; i++ ){
-			for(int j = 1; j < p; j++){
-				int min = 987654321;
+		for(int i = 0; i <(1<<n); i++){
+			for(int j = startp; j < p; j++){
 				for(int k = 0; k < n; k++){
-					if((i & (1<<k)) == 1){
-						min = Math.min(min, dp[i&1<<k][p-1]);
+					if((i & (1<<k)) == 0){
+						int min = 987654321;
+						for(int r =0; r<n;r++){
+							if((i &(1<<r)) != 0){
+								min = Math.min(min, cost[r][k]);
+							}
+						}
+						dp[i|(1<<k)][j+1] = Math.min(dp[i|(1<<k)][j+1], dp[i][j] + min);
 					}
 				}
-				
-				dp[i][j] = min;
 			}
 		}
 		int rst = 987654321;
-		for(int i =0;i < 1<<n;i++){
+		for(int i =0;i<(1<<n);i++){
 			rst = Math.min(rst, dp[i][p]);
 		}
 		
