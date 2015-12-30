@@ -8,11 +8,13 @@ public class QuickSort {
 	}
 
 	private void run() {
-		int[] A = {3, 5, 1, 2, 4, 7, 6};
-		
-		quickSort(A, 0, A.length-1);
-		
-		System.out.println(Arrays.toString(A));
+//		int[] A = {3, 5, 1, 2, 4, 7, 6};
+//		
+//		quickSort(A, 0, A.length-1);
+//		
+//		System.out.println(Arrays.toString(A));
+//		System.out.println(Integer.toHexString(11));
+		System.out.println();
 	}
 
 	private void quickSort(int[] A, int left, int right) {
