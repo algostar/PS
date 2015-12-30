@@ -24,9 +24,10 @@ public class Problem9084_JW2 {
 			int[][] DT = new int[N][M + 1];
 			for (int ix = 0; ix < N; ix++) {
 				DT[ix][0] = 1;
-				for (int m = 1; m <= M; m++) {
-					if (ix > 0) DT[ix][m] += DT[ix-1][m];
-					if (m - A[ix] >= 0) DT[ix][m] += DT[ix][m - A[ix]];
+				for (int m = A[ix]; m <= M; m++) {
+					if (ix > 0) 
+						DT[ix][m] += DT[ix-1][m];
+					DT[ix][m] += DT[ix][m - A[ix]];
 				}
 			}
 
