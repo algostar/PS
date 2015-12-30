@@ -18,18 +18,16 @@ public class Problem9084_JW2 {
 			A = new int[N];
 			for (int i = 0; i < N; i++) A[i] = sc.nextInt();
 			M = sc.nextInt();
-			
-			int[][] DT = new int[M+1][N];
-			for (int t = 0; M - t*A[0] >= 0; t++) DT[t*A[0]][0] = 1;
-			for (int m = 0; m <= M; m++) {
-				for (int ix = 1; ix < N; ix++) {
-					for (int t = 0; m - t*A[ix] >= 0; t++) {
-						DT[m][ix] += DT[m - t*A[ix]][ix-1];
-					}
+
+			int[][] DT = new int[N][M+1];
+			for (int ix = 0; ix < N; ix++) {
+				DT[ix][0] = 1;
+				for (int m = A[ix]; m <= M; m++) {
+					DT[ix][m] += DT[ix][m - A[ix]] + (ix > 0 ? DT[ix-1][m] : 0); 
 				}
 			}
 			
-			System.out.println(DT[M][N-1]);
+			System.out.println(DT[N-1][M]);
 		}
 	}
 }
