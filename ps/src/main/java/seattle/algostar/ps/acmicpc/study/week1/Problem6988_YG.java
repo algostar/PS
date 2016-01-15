@@ -29,7 +29,7 @@ public class Problem6988_YG {
 			a[i] = sc.nextInt();
 			m.put(a[i], i);
 		}
-		int max = -1;
+		int max = 0;
 		for(int i=0;i<n-1;i++){
 			for(int j=i+1;j<n;j++){
 				if(m.containsKey(a[j]-a[i]+a[j])){
