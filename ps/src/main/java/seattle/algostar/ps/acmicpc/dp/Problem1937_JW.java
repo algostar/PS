@@ -6,11 +6,15 @@ public class Problem1937_JW {
 	public static void main(String[] args) {
 		new Problem1937_JW().solve();
 	}
-
+	
+	int[][] map;
+	int[][] DT;
+	int N;
 	private void solve() {
 		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();
-		int[][] map = new int[N][N];
+		N = sc.nextInt();
+		map = new int[N][N];
+
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
 				map[i][j] = sc.nextInt();
@@ -18,35 +22,30 @@ public class Problem1937_JW {
 		}
 		
 		int maxLen = 0;
-		boolean[][] visited = new boolean[N][N];
+		DT = new int[N][N];
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
-				visited[i][j] = true;
-				int len = f(i, j, map, visited);
-				visited[i][j] = false;
-				maxLen = Math.max(maxLen, len);
+				maxLen = Math.max(maxLen, f(i, j));
 			}
 		}
 		System.out.println(maxLen);
 	}
-
-	private int f(int y, int x, int[][] map, boolean[][] visited) {
-		int len = 1;
+	private int f(int i, int j) {
+		if (DT[i][j] != 0) return DT[i][j];
 		
-		int[] dx = {0, 0, 1, -1};
-		int[] dy = {1, -1, 0, 0};
-		for (int i = 0; i < 4; i++) {
-			int nx = x + dx[i];
-			int ny = y + dy[i];
-			if (0 <= nx && nx < map.length && 0 <= ny && ny < map.length) {
-				if (!visited[ny][nx] && map[y][x] < map[ny][nx]) {
-					visited[ny][nx] = true;
-					len = Math.max(len, f(ny, nx, map, visited) + 1);
-					visited[ny][nx] = false;
+		int maxLen = 1;
+
+		int[] dy = {0, 0, 1, -1};
+		int[] dx = {1, -1, 0, 0};
+		for (int d = 0; d < 4; d++) {
+			int ny = i + dy[d];
+			int nx = j + dx[d];
+			if (0 <= nx && nx < N && 0 <= ny && ny < N) {
+				if (map[i][j] < map[ny][nx]) {
+					maxLen = Math.max(maxLen, f(ny, nx) + 1);
 				}
 			}
 		}
-		
-		return len;
+		return DT[i][j] = maxLen;
 	}
 }
