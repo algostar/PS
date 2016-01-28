@@ -10,6 +10,7 @@ package seattle.algostar.ps.acmicpc.backjoon.weeks1;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 public class Problem11004_YG {
@@ -32,8 +33,9 @@ public class Problem11004_YG {
 	}
 
 	private int quickSelect(int[] aa, int s, int e, int k) {
+		Random ran = new Random();
 		while (s < e) {
-			int p = s + (int)Math.random()*(e-s+1);
+			int p = s + ran.nextInt(e-s+1);
 			swap(aa, p, s);
 			p = s;
 			int l = s + 1;
