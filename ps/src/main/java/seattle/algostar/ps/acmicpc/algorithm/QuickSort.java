@@ -15,6 +15,7 @@ public class QuickSort {
 		System.out.println(Arrays.toString(A));
 		System.out.println(Integer.toHexString(11));
 		//System.out.println();
+		Math.random();
 	}
 
 	private void quickSort(int[] A, int left, int right) {
