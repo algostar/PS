@@ -30,11 +30,14 @@ public class Problem2225_JW {
 		
 		int cases = 0;
 		for (int i = 0; i <= N; i++) {
-			if (n - i >= 0) {
+			if (n - i > 0) {
 				cases += f(k - 1, n - i);
-				if (cases > 1000000000) {
-					cases %= 1000000000;
-				}
+			} else if (n - i == 0) {
+				cases++;
+			}
+			
+			if (cases > 1000000000) {
+				cases %= 1000000000;
 			}
 		}
 		return memo[k][n] = cases;
