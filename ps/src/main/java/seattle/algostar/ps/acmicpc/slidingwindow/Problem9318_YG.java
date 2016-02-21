@@ -103,8 +103,13 @@ public class Problem9318_YG {
  
         @Override
         public int compareTo(Event o) {
-            return this.x > o.x ? 1 : -1;
+            if(this.x > o.x){
+				return 1;
+			}else if( this.x < o.x){
+				return -1;
+			}else{
+				return 0;
+			}
         }
- 
     }
 }
