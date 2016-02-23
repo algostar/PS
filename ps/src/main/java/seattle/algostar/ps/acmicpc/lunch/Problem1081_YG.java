@@ -22,7 +22,8 @@ public class Problem1081_YG {
 	public void run(){
 		Scanner sc = new Scanner(System.in);
 		first = Integer.valueOf(sc.next());
-		a = String.valueOf(first-1).toCharArray();
+		first = first ==0?0:first-1;
+		a = String.valueOf(first).toCharArray();
 		b = sc.next().toCharArray();
 		
 		s = new long[10];
