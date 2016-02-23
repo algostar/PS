@@ -9,9 +9,6 @@ package seattle.algostar.ps.acmicpc.lunch;
 
 import java.util.Scanner;
 
-/**
- * @author 쇼핑관리개발팀 정용균
- */
 public class Problem1081_YG {
 	public static void main(String[] args){
 		new Problem1081_YG().run();
@@ -37,7 +34,7 @@ public class Problem1081_YG {
 			}
 			s[i] = 45*ten*i/10;
 		}
-		System.out.println(sum(b, b.length) - sum(a, a.length));
+		System.out.println(sum(b, 1) - sum(a, 1));
 	}
 	
 	public long sum(char[] c, int n){
@@ -48,7 +45,7 @@ public class Problem1081_YG {
 		
 		long subSum=0;
 		for(int j=0;j<n-1;j++){
-			subSum += c[j];
+			subSum += c[j]-'0';
 		}
 		
 		long ten = 1;
@@ -56,9 +53,10 @@ public class Problem1081_YG {
 			ten*=10;
 		}
 		
-		for(int i=0;i<num;i++){
+		for(int i=0;i<=num;i++){
+			if(n!=c.length && i==num) continue;
 			rst += s[c.length-n] + ten*(subSum+i);
 		}
-		return rst;
+		return rst + sum(c, n+1);
 	}
 }
