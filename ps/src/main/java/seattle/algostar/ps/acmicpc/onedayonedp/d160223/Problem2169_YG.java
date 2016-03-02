@@ -17,38 +17,42 @@ public class Problem2169_YG {
 	
 	int n,m;
 	int[][] a;
-	int[][] cache;
+	int[][][] cache;
 	public void run(){
 		Scanner sc = new Scanner(System.in);
 		n = sc.nextInt(); m = sc.nextInt();
-		a = new int[n+2][m+1]; cache = new int[n+2][m+1];
+		a = new int[n+2][m+2]; cache = new int[n+2][m+2][3];
 		for(int i=1;i<=n;i++){
 			for(int j=1;j<=m;j++){
 				a[i][j]=sc.nextInt();
 			}
 		}
-		Arrays.fill(cache[1], -987654321);
-		cache[1][1] = a[1][1];
-		for(int i=2;i<=n+1;i++){
-			Arrays.fill(cache[i], -987654321);
-			
-			int[] psum = new int[m+1];
-			for(int j=1;j<=m;j++){
-				psum[j]=psum[j-1]+a[i-1][j];
-			}
-			
-			for(int j=1;j<=m;j++){
-				for(int k=1;k<=m;k++){
-					int p=0;
-					if(k<j){
-						p=psum[j]-psum[k];
-					}else{
-						p=psum[k-1]-psum[j-1];
-					}
-					cache[i][j] = Math.max(cache[i][j], cache[i-1][k]+p+a[i][j]);
-				}
+		
+		for(int i=0;i<n+2;i++){
+			for(int j=0;j<m+2;j++){
+				Arrays.fill(cache[i][j], -987654321);
 			}
 		}
-		System.out.println(cache[n+1][m]);
+		
+		cache[1][0][2]=0;
+		for(int i=1;i<=n;i++){
+			for(int k=0;k<3;k++){
+				if(k==0 || k==2){
+					for(int j=1;j<=m;j++){
+						cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][0] + a[i][j]);
+						cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][1] + a[i][j]);
+						cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][2] + a[i][j]);
+						cache[i][j][2] = Math.max(cache[i][j][2], cache[i][j-1][2] + a[i][j]);
+						cache[i][j][2] = Math.max(cache[i][j][2], cache[i][j-1][0] + a[i][j]);
+					}
+				}else{
+					for(int j=m;j>=1;j--){
+						cache[i][j][1] = Math.max(cache[i][j][1], cache[i][j+1][1] + a[i][j]);
+						cache[i][j][1] = Math.max(cache[i][j][1], cache[i][j+1][0] + a[i][j]);
+					}
+				}	
+			}
+		}
+		System.out.println(Math.max(cache[n][m][2], Math.max(cache[n][m][0], cache[n][m][1])));
 	}
 }
