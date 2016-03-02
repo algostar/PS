@@ -1,4 +1,4 @@
-package seattle.algostar.ps.acmicpc.lunch;
+package seattle.algostar.ps.acmicpc.onedayonedp.d160223;
 
 import java.util.Arrays;
 import java.util.Scanner;
