@@ -19,7 +19,14 @@ import java.util.StringTokenizer;
 
 public class Problem10800_YG {
 	public static void main(String[] args) throws NumberFormatException, IOException{
-		new Problem10800_YG().run();
+		String zipCode = "13586";
+		if (zipCode.length() == 6 || zipCode.length() == 5) {
+			System.out.println("no");
+		} else {
+			System.out.println("yes");
+		}
+		
+		//new Problem10800_YG().run();
 	}
 	
 	int[] color;
