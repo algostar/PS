@@ -34,18 +34,18 @@ public class Problem1234_JW {
 					for (int b = 0; b <= B; b++) {
 						if (n % 3 == 0) {
 							if (r - n/3 >= 0 && g - n/3 >= 0 && b - n/3 >= 0) {
-								DT[n][r][g][b] += DT[n-1][r - n/3][g - n/3][b - n/3] * (fac[n]/fac[n/3]/fac[n/3]/fac[n/3]);
+								DT[n][r][g][b] += DT[n-1][r - n/3][g - n/3][b - n/3] * (fac[n]/(fac[n/3]*fac[n/3]*fac[n/3]));
 							}
 						}
 						if (n % 2 == 0) {
 							if (r - n/2 >= 0 && g - n/2 >= 0) {
-								DT[n][r][g][b] += DT[n-1][r - n/2][g - n/2][b] * (fac[n]/fac[n/2]/fac[n/2]);
+								DT[n][r][g][b] += DT[n-1][r - n/2][g - n/2][b] * (fac[n]/(fac[n/2]*fac[n/2]));
 							}
 							if (r - n/2 >= 0 && b - n/2 >= 0) {
-								DT[n][r][g][b] += DT[n-1][r - n/2][g][b - n/2] * (fac[n]/fac[n/2]/fac[n/2]);
+								DT[n][r][g][b] += DT[n-1][r - n/2][g][b - n/2] * (fac[n]/(fac[n/2]*fac[n/2]));
 							}
 							if (g - n/2 >= 0 && b - n/2 >= 0) {
-								DT[n][r][g][b] += DT[n-1][r][g - n/2][b - n/2] * (fac[n]/fac[n/2]/fac[n/2]);
+								DT[n][r][g][b] += DT[n-1][r][g - n/2][b - n/2] * (fac[n]/(fac[n/2]*fac[n/2]));
 							}
 						}
 						
