@@ -3,6 +3,10 @@ package seattle.algostar.ps.acmicpc.dp;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Failed
+ *
+ */
 public class Problem2157_JW {
 	public static void main(String[] args) {
 		new Problem2157_JW().solve(); 
