@@ -35,6 +35,8 @@ public class Problem2624_YG {
 				for(int k=0;k<=coinc[i];k++){
 					if(j-k*coin[i]>=0){
 						cache[i][j]+=cache[i-1][j-k*coin[i]];
+					}else{
+						break;
 					}
 				}
 			}
