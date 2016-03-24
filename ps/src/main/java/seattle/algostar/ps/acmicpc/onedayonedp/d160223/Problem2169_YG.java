@@ -35,6 +35,7 @@ public class Problem2169_YG {
 		}
 		
 		cache[1][0][2]=0;
+		cache[1][0][0]=0;
 		for(int i=1;i<=n;i++){
 			for(int k=0;k<3;k++){
 				if(k==0 || k==2){
