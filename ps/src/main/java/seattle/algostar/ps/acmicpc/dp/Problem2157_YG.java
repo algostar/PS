@@ -7,52 +7,50 @@
 
 package seattle.algostar.ps.acmicpc.dp;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.Scanner;
 
 public class Problem2157_YG {
-	public static void main(String[] args) throws IOException{
-		new Problem2157_YG().run();
-	}
-	
-	int[][] invertg;
-	int[][] cache;
-	int n,m,s;
-	public void run() throws IOException{
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		
-		n=Integer.valueOf(st.nextToken());
-		m=Integer.valueOf(st.nextToken());
-		s=Integer.valueOf(st.nextToken());
-		invertg = new int[n+1][n+1];
-		cache=new int[n+1][m+1];
-		for(int i=0;i<n;i++){
-			Arrays.fill(cache[i], Integer.MIN_VALUE);
-		}
-		for(int i=0;i<s;i++){
-			st = new StringTokenizer(br.readLine());
-			int from = Integer.valueOf(st.nextToken());
-			int to = Integer.valueOf(st.nextToken());
-			int cost = Integer.valueOf(st.nextToken());
-			
-			invertg[to][from]=Math.max(invertg[to][from], cost);
-		}
-		int rst=0;
-		cache[1][1]=0;
-		for(int i=2;i<=n;i++){
-			for(int j=1;j<=m;j++){
-				for(int k=1;k<i;k++){
-					if(invertg[i][k]!=0){
-						cache[i][j] = Math.max(cache[i][j], cache[k][j-1]+invertg[i][k]);
-					}
-				}
-				if(i==n) rst=Math.max(rst, cache[i][j]);
-			}
-		}
-		System.out.println(rst);
-	}
+	public static void main(String[] args) {
+        new Problem2157_YG().solve(); 
+    }
+
+    private void solve() {
+        Scanner sc = new Scanner(System.in);
+        int nn = sc.nextInt();
+        int mm = sc.nextInt();
+        int kk = sc.nextInt();
+
+        int[][] paths = new int[nn+1][nn+1];
+        int[][] DT = new int[nn+1][mm+1];
+        for (int i = 0; i <= nn; i++) {
+            Arrays.fill(paths[i], -1);
+            Arrays.fill(DT[i], -1);
+        }
+        
+        for (int i = 0; i < kk; i++) {
+            int s = sc.nextInt();
+            int e = sc.nextInt();
+            int v = sc.nextInt();
+            paths[s][e] = Math.max(paths[s][e], v); 
+        }
+        
+        DT[1][1]=0;
+        for (int i = 1; i <= nn; i++) {
+            for (int t = 1; t < i; t++) {
+                for (int m = 2; m <= mm; m++) {
+                    if (DT[i - t][m - 1] != -1 && paths[i-t][i] != -1) {
+                        DT[i][m] = Math.max(DT[i][m], DT[i - t][m - 1] + paths[i - t][i] );
+                    }
+                }
+            }
+        }
+        
+        int max = 0;
+        for (int m = 1; m <= mm; m++) {
+            max = Math.max(max, DT[nn][m]);
+        }
+        System.out.println(max);
+    }
 }
+

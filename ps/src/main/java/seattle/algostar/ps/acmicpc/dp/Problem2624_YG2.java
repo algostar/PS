@@ -35,14 +35,18 @@ public class Problem2624_YG2 {
 		for(int i=1;i<=n;i++){
 			coin[i]=sc.nextInt(); coinc[i]=sc.nextInt();
 		}
+	
 		cache[0][0][0]=1;
 		now[0]=1;
 		
 		for(int i=1;i<=n;i++){
 			for(int j=0;j<=s;j++){
 				for(int k=0;k<=coinc[i];k++){
-					if(k==0) cache[i%2][j][k]=now[j];
-					if(j-coin[i]>=0 && k>=1) cache[i%2][j][k]+=cache[i%2][j-coin[i]][k-1];
+					if(k==0){
+						cache[i%2][j][k]=now[j];
+					}else if(j-coin[i]>=0 && k>=1){
+						cache[i%2][j][k]+=cache[i%2][j-coin[i]][k-1];
+					}
 					prev[j]+=cache[i%2][j][k];
 				}
 			}
