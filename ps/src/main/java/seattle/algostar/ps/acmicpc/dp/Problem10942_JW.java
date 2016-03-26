@@ -7,40 +7,31 @@ public class Problem10942_JW {
 		new Problem10942_JW().solve();
 	}
 
-	Boolean[][] DT;
-	int[] A;
-	
-	private void solve() {
-		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();
-		A = new int[N+1];
-		for (int i = 1; i <= N; i++) A[i] = sc.nextInt();
-		
-		DT = new Boolean[N+1][N+1];
-		
-		for (int e = 1; e <= N; e++) {
-			for (int s = e; s >= 0; s--) {
-				if (s == e) {
-					DT[s][e] = true;
-					continue;
-				}
-				
-				if (A[e] == A[s]) {
-					boolean isPalin = DT[s+1][e-1];
-					DT[s][e] = isPalin;
-				} else {
-					DT[s][e] = false;
-				}
-			
-			}
-		}
-		
-		int M = sc.nextInt();
-		for (int i = 0; i < M; i++) {
-			int s = sc.nextInt();
-			int e = sc.nextInt();
-			System.out.println((DT[s][e]) ? 1 : 0);
-		}
-	}
+    private void solve() {
+        Scanner sc = new Scanner(System.in);
+        int nn = sc.nextInt();
+        int[] A = new int[nn+1];
+        for (int i = 1; i <= nn; i++) A[i] = sc.nextInt();
+         
+        boolean[][] DT = new boolean[nn+2][nn+2];
+         
+        for (int s = nn; s >= 1; s--) {
+            DT[s][s] = true;
+            for (int e = s + 1; e <= nn; e++) {
+                if (A[s] == A[e]) {
+                    DT[s][e] = (e - s == 1) ? true : DT[s+1][e-1];
+                } else {
+                    DT[s][e] = false;
+                }
+            }
+        }
+         
+        int M = sc.nextInt();
+        for (int i = 0; i < M; i++) {
+            int s = sc.nextInt();
+            int e = sc.nextInt();
+            System.out.println((DT[s][e]) ? 1 : 0);
+        }
+    }
 
 }
