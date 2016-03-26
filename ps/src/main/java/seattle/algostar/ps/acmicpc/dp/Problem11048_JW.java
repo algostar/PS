@@ -13,17 +13,23 @@ public class Problem11048_JW {
 		int n = Reader.nextInt();
 		int m = Reader.nextInt();
 		
-		int[][] DT = new int[3][m+1];
+		int[][] V = new int[n+1][m+1];
 		for (int i = 1; i <= n; i++) {
 			for (int j = 1; j <= m; j++) {
 				int val = Reader.nextInt();
-				DT[i%3][j] = Math.max(DT[(i-1)%3][j], DT[i%3][j-1]);
-				DT[i%3][j] = Math.max(DT[i%3][j], DT[(i-1)%3][j-1]);
-				DT[i%3][j] += val;
+				V[i][j] = val;
+			}
+		}
+		int[][] DT = new int[n+1][m+1];
+		for (int j = 1; j <= m; j++) {
+			for (int i = 1; i <= n; i++) {
+				DT[i][j] = Math.max(DT[i-1][j], DT[i][j-1]);
+				DT[i][j] = Math.max(DT[i][j], DT[i-1][j-1]);
+				DT[i][j] += V[i][j];
 			}
 		}
 		
-		System.out.println(DT[n%3][m]);
+		System.out.println(DT[n][m]);
 	}
 	
 	static class Reader {

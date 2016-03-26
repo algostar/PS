@@ -38,6 +38,19 @@ public class Problem2169_JW {
 			}
 		}
 		
+		
+		for (int y = 1; y <= nn; y++) {
+			for (int x = 1; x <= mm; x++) {
+				int up = Math.max(DT[0][y-1][x], DT[1][y-1][x]);
+				DT[0][y][x] = Math.max(DT[0][y][x-1], up) + MAP[y][x];
+			}
+			
+			for (int x = mm; x >= 1; x--) {
+				int up = Math.max(DT[0][y-1][x], DT[1][y-1][x]);
+				DT[1][y][x] = Math.max(DT[1][y][x+1], up) + MAP[y][x];
+			}
+		}
+		
 		System.out.println(Math.max(DT[0][nn][mm], DT[1][nn][mm]));
 	}
 }

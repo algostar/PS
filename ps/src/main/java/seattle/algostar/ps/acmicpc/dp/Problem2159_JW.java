@@ -26,37 +26,39 @@ public class Problem2159_JW {
 			TY[i] = sc.nextInt();
 		}
 		
-		int[][] SS = new int[nn+1][5];
-		for (int[] S : SS) Arrays.fill(S, (int)1e9);
+		long[][] SS = new long[nn+1][5];
+		for (long[] S : SS) Arrays.fill(S, (long)1e9);
 		SS[0][0] = 0;
 		for (int i = 1; i <= nn; i++) {
-			for (int curD = 1; curD < 5; curD++) {
+			for (int curD = 0; curD < 5; curD++) {
 				if (i == 1) {
 					SS[1][curD] = getVal(1, TX, TY, curD, 0);
 					continue;
 				}
-				for (int pastD = 1; pastD < 5; pastD++) {
+				for (int pastD = 0; pastD < 5; pastD++) {
 					SS[i][curD] = Math.min(SS[i][curD], SS[i-1][pastD] + getVal(i, TX, TY, curD, pastD));
 				}
 			}
 		}
 		
-		int min = (int)1e9;
+		long min = (long)1e9;
 		for (int d = 0; d < 5; d++) {
 			min = Math.min(min, SS[nn][d]);
 		}
+		
 		System.out.println(min);
 	}
 
-	private int getVal(int i, int[] TX, int[] TY, int curD, int pastD) {
+	private long getVal(int i, int[] TX, int[] TY, int curD, int pastD) {
 		
-		int px = TX[i-1]+DX[pastD];
-		int cx = TX[i]+DX[curD];
-		int py = TY[i-1]+DY[pastD];
-		int cy = TY[i]+DY[curD];
+		int px = TX[i-1] + DX[pastD];
+		int cx = TX[i] + DX[curD];
+		
+		int py = TY[i-1] + DY[pastD];
+		int cy = TY[i] + DY[curD];
 
-		int costX = Math.abs(px - cx);
-		int costY = Math.abs(py - cy); 
+		long costX = Math.abs(px - cx);
+		long costY = Math.abs(py - cy); 
 		return costX + costY;
 	}
 	
