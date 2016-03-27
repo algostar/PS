@@ -27,7 +27,7 @@ public class Problem2159_JW {
 		}
 		
 		long[][] SS = new long[nn+1][5];
-		for (long[] S : SS) Arrays.fill(S, (long)1e9);
+		for (long[] S : SS) Arrays.fill(S, (long)1e18);
 		SS[0][0] = 0;
 		for (int i = 1; i <= nn; i++) {
 			for (int curD = 0; curD < 5; curD++) {
@@ -41,7 +41,7 @@ public class Problem2159_JW {
 			}
 		}
 		
-		long min = (long)1e9;
+		long min = (long)1e18;
 		for (int d = 0; d < 5; d++) {
 			min = Math.min(min, SS[nn][d]);
 		}
