@@ -8,51 +8,38 @@ public class Problem1750_JW {
 		new Problem1750_JW().solve();
 	}
 
+	long MOD = 10000003;
+	
 	private void solve() {
 		Scanner sc = new Scanner(System.in);
 		int nn = sc.nextInt();
 		int[] in = new int[nn];
+		int max = 0;
 		for (int i = 0; i < nn; i++) {
 			in[i] = sc.nextInt();
+			max = Math.max(max, in[i]);
 		}
 
-		long[] SS = new long[nn];
-		SS[0] = (in[0] == 1) ? 1 : 0;
+		long[][] SS = new long[nn][max+1];
+		SS[0][in[0]] = 1;
+		
 		for (int i = 1; i < nn; i++) {
-			int cnt = 0;
-			for (int j = 0; j <= i - 1; j++) {
-				int gcd = GCD(in[j], in[i]);
-				if (gcd == 1)
-					cnt++;
-			}
-			SS[i] = SS[i - 1] + cnt;
-			if (cnt >= 1) {
-				for (int r = 1; r <= i - 1; r++) {
-					SS[i] += (COMBI(i - 1, r) % 10000003);
+			SS[i][in[i]]++;
+			for (int g = 1; g < max+1; g++) {
+				SS[i][g] += SS[i-1][g];
+				SS[i][g] %= MOD;
+				if (SS[i-1][g] > 0) {
+					int gcd = getGCD(in[i], g);
+					SS[i][gcd] += SS[i-1][g];
+					SS[i][g] %= MOD;
 				}
 			}
-
-			SS[i] %= 10000003;
 		}
 		
-		System.out.println(SS[nn - 1]);
+		System.out.println(SS[nn-1][1] % MOD);
 	}
-
-	private long COMBI(int n, int r) {
-		if (r > n / 2)
-			r = n - r;
-		long ans = 1;
-		int i;
-
-		for (i = 1; i <= r; i++) {
-			ans *= n - r + i;
-			ans /= i;
-		}
-
-		return ans;
-	}
-
-	private int GCD(int a, int b) {
+	
+	private int getGCD(int a, int b) {
 		while (b != 0) {
 			int t = a % b;
 			a = b;
@@ -60,4 +47,5 @@ public class Problem1750_JW {
 		}
 		return a;
 	}
+
 }
