@@ -37,23 +37,36 @@ public class Problem2169_YG {
 		cache[1][0][2]=0;
 		cache[1][0][0]=0;
 		for(int i=1;i<=n;i++){
-			for(int k=0;k<3;k++){
-				if(k==0 || k==2){
-					for(int j=1;j<=m;j++){
-						cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][0] + a[i][j]);
-						cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][1] + a[i][j]);
-						cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][2] + a[i][j]);
-						cache[i][j][2] = Math.max(cache[i][j][2], cache[i][j-1][2] + a[i][j]);
-						cache[i][j][2] = Math.max(cache[i][j][2], cache[i][j-1][0] + a[i][j]);
-					}
-				}else{
-					for(int j=m;j>=1;j--){
-						cache[i][j][1] = Math.max(cache[i][j][1], cache[i][j+1][1] + a[i][j]);
-						cache[i][j][1] = Math.max(cache[i][j][1], cache[i][j+1][0] + a[i][j]);
-					}
-				}	
+			for(int j=1;j<=m;j++){
+				cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][0] + a[i][j]);
+				cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][1] + a[i][j]);
+				cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][2] + a[i][j]);
+				cache[i][j][2] = Math.max(cache[i][j][2], cache[i][j-1][2] + a[i][j]);
+				cache[i][j][2] = Math.max(cache[i][j][2], cache[i][j-1][0] + a[i][j]);
+			}
+			
+			for(int j=m;j>=1;j--){
+				cache[i][j][1] = Math.max(cache[i][j][1], cache[i][j+1][1] + a[i][j]);
+				cache[i][j][1] = Math.max(cache[i][j][1], cache[i][j+1][0] + a[i][j]);
+				
 			}
 		}
+//		for(int j=1;j<=m;j++){
+//			for(int i=1;i<=n;i++){
+//				cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][0] + a[i][j]);
+//				cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][1] + a[i][j]);
+//				cache[i][j][0] = Math.max(cache[i][j][0], cache[i-1][j][2] + a[i][j]);
+//				cache[i][j][2] = Math.max(cache[i][j][2], cache[i][j-1][2] + a[i][j]);
+//				cache[i][j][2] = Math.max(cache[i][j][2], cache[i][j-1][0] + a[i][j]);
+//			}
+//		}
+//		for(int j=m;j>=1;j--){
+//			for(int i=1;i<=n;i++){
+//				cache[i][j][1] = Math.max(cache[i][j][1], cache[i][j+1][1] + a[i][j]);
+//				cache[i][j][1] = Math.max(cache[i][j][1], cache[i][j+1][0] + a[i][j]);
+//			}
+//		}
+		
 		System.out.println(Math.max(cache[n][m][2], Math.max(cache[n][m][0], cache[n][m][1])));
 	}
 }
