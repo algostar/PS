@@ -38,8 +38,8 @@ public class Problem6988_YG {
 			}
 		}
 		
-		for(int i=0;i<n-1;i++){
-			for(int j=i+1;j<n;j++){
+		for(int i=2;i<=n;i++){
+			for(int j=1;j<n;j++){
 				if(m.containsKey(a[j]-a[i]+a[j])){
 					int v = m.get(a[j]-a[i]+a[j]);
 					dp[j][v] = Math.max(dp[j][v], dp[i][j] + a[v]);
