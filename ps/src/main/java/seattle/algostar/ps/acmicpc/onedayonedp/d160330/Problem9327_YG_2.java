@@ -17,13 +17,14 @@ import java.util.StringTokenizer;
 
 public class Problem9327_YG_2 {
 	public static void main(String[] args) throws NumberFormatException, IOException{
-		new Problem9327_YG().run();
+		new Problem9327_YG_2().run();
 	}
 	
 	int[][] cache;
 	int n;
 	int e;
 	int[] a;
+	int[] psum;
 	public void run() throws NumberFormatException, IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -33,26 +34,21 @@ public class Problem9327_YG_2 {
 			n=Integer.valueOf(is[0]);
 			e=Integer.valueOf(is[1]);
 			a=new int[n+1];
+			psum=new int[n+1];
 			
 			int sum=0;
 			StringTokenizer st =  new StringTokenizer(br.readLine());
 			for(int i=1;i<=n;i++){
 				a[i]=Integer.valueOf(st.nextToken());
 				sum+=a[i];
+				psum[i]+=sum;
 			}
 			cache = new int[n+1][sum+1];
-			for(int i=0;i<=n;i++) Arrays.fill(cache, -1);
-			f(n, sum);
+			for(int i=0;i<=n;i++) Arrays.fill(cache[i], 987654321);
 			
-			int rst=-1;
-			for(int i=0;i<=sum;i++){
-				if(cache[n][i]==1 && 2*i>=e){
-					rst=i;
-					break;
-				}
-			}
-			
-			if(rst==-1){
+			int rst=f(1,0);
+
+			if(rst>=987654321){
 				bw.write("FULL");
 			}else{
 				bw.write(String.valueOf(rst));
@@ -63,12 +59,13 @@ public class Problem9327_YG_2 {
 	}
 	
 	public int f(int i, int s){
-		if(s==0) return 1;
-		if(i<0 || s<0) return 0;
+		if(2*s>=e) return 0;
+		if(i>n) return 987654321;
+		if(2*(s+psum[n]-psum[i-1])<e) return 987654321;
 		
-		if(cache[i][s]==-1){
+		if(cache[i][s]<987654321){
 			return cache[i][s];
 		}	
-		return cache[i][s]=f(i-1,s)|f(i-1,s-a[i]);
+		return cache[i][s]=Math.min(f(i+1,s), f(i+1,s+a[i])+a[i]);
 	}
 }
