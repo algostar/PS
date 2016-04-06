@@ -31,7 +31,6 @@ public class Problem10653_JW {
 			}
 		}
 		
-		System.out.println(Arrays.deepToString(F));
 		System.out.println(F[nn-1][kk]);
 	}
 
