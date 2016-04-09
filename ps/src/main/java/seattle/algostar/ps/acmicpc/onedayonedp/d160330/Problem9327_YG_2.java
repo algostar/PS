@@ -48,7 +48,7 @@ public class Problem9327_YG_2 {
 			
 			int rst=f(1,0);
 
-			if(rst>=987654321){
+			if(rst==987654321){
 				bw.write("FULL");
 			}else{
 				bw.write(String.valueOf(rst));
@@ -61,9 +61,9 @@ public class Problem9327_YG_2 {
 	public int f(int i, int s){
 		if(2*s>=e) return 0;
 		if(i>n) return 987654321;
-		if(2*(s+psum[n]-psum[i-1])<e) return 987654321;
+		//if(2*(s+psum[n]-psum[i-1])<e) return 987654321;
 		
-		if(cache[i][s]<987654321){
+		if(cache[i][s]!=987654321){
 			return cache[i][s];
 		}	
 		return cache[i][s]=Math.min(f(i+1,s), f(i+1,s+a[i])+a[i]);
