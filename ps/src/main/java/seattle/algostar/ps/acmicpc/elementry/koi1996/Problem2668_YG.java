@@ -22,10 +22,11 @@ public class Problem2668_YG {
 	int n;
 	int[] visit;
 	List<Integer> rst = new ArrayList<Integer>();
+	int[] select;
 	public void run(){
 		Scanner sc = new Scanner(System.in);
 		n = sc.nextInt();
-		in = new int[n+1]; visit=new int[n+1];
+		in = new int[n+1]; visit=new int[n+1]; select = new int[n+1];
 		for(int i=1;i<=n;i++){
 			in[i]=sc.nextInt();
 		}
@@ -33,7 +34,12 @@ public class Problem2668_YG {
 		for(int i=1;i<=n;i++){
 			List<Integer> t = getCycle(i);
 			if(t != null){
-				rst.addAll(t);
+				for(int elem:t){
+					if(select[elem]==0){
+						rst.add(elem);
+						select[elem]=1;
+					}
+				}
 			}
 		}
 		Collections.sort(rst);
@@ -56,9 +62,6 @@ public class Problem2668_YG {
 			}
 			if(s==in[e]){
 				isRst=true; break;
-			}
-			if(e>in[e]){
-				isRst=false; break;
 			}
 			visit[e]++;
 		}
