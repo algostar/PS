@@ -4,7 +4,19 @@ import java.util.BitSet;
 
 public class BitTest {
 	public static void main(String[] args) {
-		new BitTest().run();
+		//new BitTest().run();
+		
+//		int base=1;
+//		for(base=1;base<5;base*=2);
+//		System.out.println(base);
+		int a=10,b=14;
+		for(;a<b;){
+			if(a%2==1) a++;
+			if(b%2==0) b--;
+			a>>=1; b>>=1;
+			System.out.print(a + " " +b );
+			System.out.println();
+		}
 	}
 
 	private void run() {

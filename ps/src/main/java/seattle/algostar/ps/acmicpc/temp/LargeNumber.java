@@ -8,7 +8,7 @@
 package seattle.algostar.ps.acmicpc.temp;
 
 import java.util.Arrays;
-import java.util.Comparator;
+import java.util.TreeSet;
 
 /**
  * @author 쇼핑관리개발팀 정용균
@@ -30,6 +30,10 @@ public class LargeNumber {
 //		for(int elem:a){
 //			System.out.println(elem);
 //		}
+		
+		TreeSet<Integer> ts = new TreeSet<Integer>(Arrays.asList(4,7,9,10));
+		System.out.println(ts.lower(9));
+		System.out.println(ts.higher(9));
 	}
 	
 //	class MyComparator implements Comparator<Integer>{
