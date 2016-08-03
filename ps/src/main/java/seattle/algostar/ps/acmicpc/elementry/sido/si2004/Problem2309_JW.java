@@ -1,4 +1,4 @@
-package seattle.algostar.ps.acmicpc.elementry.koi2004;
+package seattle.algostar.ps.acmicpc.elementry.sido.si2004;
 
 import java.util.Arrays;
 import java.util.Scanner;
