@@ -33,6 +33,7 @@ public class Problem2608_YG {
 	
 	
 	public void run(){
+		char[] a = "dafdf".toCharArray();
 		Scanner sc = new Scanner(System.in);
 		String in1 = sc.next();
 		String in2 = sc.next();
