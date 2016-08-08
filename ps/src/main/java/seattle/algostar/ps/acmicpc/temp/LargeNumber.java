@@ -7,10 +7,9 @@
 
 package seattle.algostar.ps.acmicpc.temp;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * @author 쇼핑관리개발팀 정용균
@@ -21,18 +20,36 @@ public class LargeNumber {
 		new LargeNumber().run();
 	}
 	
+	int[] a = {5, 3, 1, 4, 2, 7};
+	Integer[] b = {0, 1, 2, 3, 4, 5};
+	
+	class MyCompare implements Comparator<Integer>{
+		/**
+		 * @param o1
+		 * @param o2
+		 * @return
+		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+		 */
+		@Override
+		public int compare(Integer o1, Integer o2) {
+			return a[o1]-a[o2];
+		}
+		
+	}
 	public void run(){
-		List<String> list = new ArrayList<String>();
+		System.out.println("aaaaa".substring(0, 2));
+		Map<String, Integer> m = new LinkedHashMap(){{
+			put("aa", 1);
+			put("bb", 1);
+			put("cc", 1);
+			put("dd", 1);
+			put("ee", 1);
+			put("ff", 1);
+		}};
 		
-		BlockingQueue<String> pendingList = new LinkedBlockingQueue<String>(10);
-		pendingList.add("pending1");
-		pendingList.add("pending2");
-		pendingList.add("pending3");
-		
-		int cnt = pendingList.drainTo(list, 10);
-		System.out.println(cnt);
-		System.out.println(pendingList.size());
-		System.out.println(list.size());
+		System.out.println(m.toString());
+//		Arrays.sort(b, new MyCompare());
+//		System.out.println(Arrays.toString(b));
 //		double d = 1;
 //		//System.out.println(d/49);
 //		System.out.println(1.0d/49*49);
