@@ -31,6 +31,26 @@ public class Problem167_JW {
     
     public int[] twoSum(int[] numbers, int target) {
     	int[] res = new int[2];
+    	int i = 0;
+    	int j = numbers.length-1;
+    	while (i < j) {
+    		int sum = numbers[i] + numbers[j];
+    		if (target < sum) {
+    			j--;
+    		} else if (sum < target) {
+    			i++;
+    		} else {
+    			res[0] = i + 1;
+    			res[1] = j + 1;
+    			break;
+    		}
+    	}
+    	return res;
+    }
+    
+    
+    public int[] twoSum2(int[] numbers, int target) {
+    	int[] res = new int[2];
     	Map<Integer, Integer> map = new HashMap<>();
     	for (int i = 0; i < numbers.length; i++) {
     		map.put(numbers[i], i);
