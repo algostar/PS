@@ -6,22 +6,10 @@ public class Test {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
+		String a = "2016-10-20T08:46:00.135Z";
 		
-		while (sc.hasNext()) {
-			char[] text = sc.nextLine().toCharArray();
-			
-			String res = "";
-			for (int i = 0; i < text.length; i++) {
-				if (text[i] == '_') {
-					res += Character.toUpperCase(text[i+1]);
-					i++;
-				} else {
-					res += text[i];
-				}
-			}
-			
-			System.out.println(res);
-		}
+		String b = a.substring(0, 19);
 		
+		System.out.println(b);
 	}
 }

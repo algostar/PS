@@ -11,21 +11,15 @@ public class Problem1786_JW {
 
 	private void solve() {
 		Scanner sc = new Scanner(System.in);
-		String t = sc.nextLine();
-		String p = sc.nextLine();
+		String[] t = sc.nextLine().toCharArray();
+		String[] p = sc.nextLine().toCharArray();
 		
-		int ix = 0;
-		List<Integer> ixs = new ArrayList<Integer>();
-		while (ix != -1) {
-			ix = t.indexOf(p, ix+1);
-			if (ix != -1) {
-				ixs.add(ix+1);
-			}
-		}
-		System.out.println(ixs.size());
-		for (int i = 0; i < ixs.size(); i++) {
-			System.out.print(ixs.get(i));
-			System.out.print(" ");
+		int[] place = new int[p.length()];
+		
+		
+		for (int i = 0; i < place.length i++) {
+			int six = 0;
+			
 		}
 	}
 }

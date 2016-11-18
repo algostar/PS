@@ -5,14 +5,14 @@ import java.util.*;
  
 public class Test1 {
 	public static void main(String[] args) throws UnsupportedEncodingException {
-		String a = "한";
-		System.out.println(a.getBytes("ISO-8859-1").length);
+		int a = 5;
 		
-		String c = "1";
-		System.out.println(c.getBytes().length);
+		System.out.println(Integer.toBinaryString(a));
+		char[] A = {};
 		
-		Character b = '가';
+		String.valueOf(data)
 		
-		System.out.println(Integer.toHexString(b));
+		StringBuilder sb = new StringBuilder();
+		sb.reverse();
 	}
 }
