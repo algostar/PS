@@ -15,5 +15,7 @@ public class Test {
         System.out.println(b);
 
         System.out.println(b);
+
+        System.out.println("4444");
     }
 }
