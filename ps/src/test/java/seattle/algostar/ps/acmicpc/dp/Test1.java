@@ -11,5 +11,9 @@ public class Test {
         String b = a.substring(0, 19);
 
         System.out.println(b);
+
+        System.out.println(b);
+
+        System.out.println(b);
     }
 }
