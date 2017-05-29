@@ -25,7 +25,7 @@ public class Problem11722_JW {
 		}
 		
 		int max = 0;
-		for (int d : D) max = Math.max(max, d);L
+		for (int d : D) max = Math.max(max, d);
 		System.out.println(max);
 	}
 }
